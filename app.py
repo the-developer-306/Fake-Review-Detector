@@ -31,9 +31,9 @@ nlp = spacy.load('en_core_web_sm')
 
 # Download NLTK resources if they are not present (though we have them locally, it helps if they are missing)
 try:
-    nltk.data.find('tokenizers/punkt')
+    nltk.data.find('tokenizers/punkt_tab')
 except LookupError:
-    nltk.download('punkt')
+    nltk.download('punkt_tab')
 
 try:
     nltk.data.find('corpora/stopwords')
