@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Review Classification</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-container h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            font-size: 1.2em;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="form-container">
+        <h2>Review Classification</h2>
+        <form action="/" method="post">
+            <label for="review_text">Review Text:</label>
+            <textarea name="review_text" rows="4" required></textarea>
+
+            <label for="overall">Overall Rating:</label>
+            <input type="number" name="overall" min="1" max="5" required>
+
+            <label for="helpful_ratio">Helpful Ratio:</label>
+            <input type="number" step="0.01" name="helpful_ratio" required>
+
+            <input type="submit" value="Classify Review">
+        </form>
+        {% if prediction %}
+        <div class="result">{{ prediction }}</div>
+        {% endif %}
+    </div>
+</body>
+
+</html>
