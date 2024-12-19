@@ -7,6 +7,10 @@ import spacy
 import pickle
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer as SIA
 import joblib
+import os
+
+# Ensure that NLTK uses the local nltk_data folder
+nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
 
 # Load pre-trained models and pipelines
 with open('scaling_pipeline.pkl', 'rb') as f:
@@ -24,8 +28,18 @@ review_classifier_model = joblib.load('Review_classifier_LG.pkl')
 app = Flask(__name__)
 analyzer = SIA()
 nlp = spacy.load('en_core_web_sm')
-nltk.download('punkt')
-nltk.download('stopwords')
+
+# Download NLTK resources if they are not present (though we have them locally, it helps if they are missing)
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords')
+
 stop_words = set(nltk.corpus.stopwords.words('english'))
 
 # Define contractions dictionary
