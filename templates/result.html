@@ -1,21 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Review Result</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+    <!-- Google Fonts for better typography -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* General Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-<body>
+      /* Body Styling */
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      /* Result Container Styling */
+      .result-container {
+        max-width: 600px;
+        margin: 5rem auto;
+        background-color: white;
+        padding: 3rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      .result-container h1 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+      }
+
+      .result-container p {
+        font-size: 1.2rem;
+        color: #34495e;
+        margin-bottom: 1.5rem;
+      }
+
+      .result-container h2 {
+        font-size: 2rem;
+        color: #2980b9;
+        font-weight: 700;
+        margin-bottom: 2rem;
+      }
+
+      /* Button Styling */
+      .button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: #2980b9;
+        color: white;
+        font-size: 1.2rem;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 1rem;
+        transition: all 0.3s ease;
+      }
+
+      .button:hover {
+        background-color: #3498db;
+        transform: scale(1.05);
+      }
+
+      .button:active {
+        background-color: #2980b9;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .result-container {
+          padding: 2rem;
+        }
+
+        .result-container h1 {
+          font-size: 2rem;
+        }
+
+        .result-container p {
+          font-size: 1rem;
+        }
+
+        .result-container h2 {
+          font-size: 1.5rem;
+        }
+
+        .button {
+          font-size: 1rem;
+          padding: 0.8rem 1.5rem;
+        }
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        background-color: #2c3e50;
+        padding: 1rem;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .navbar-logo {
+        color: white;
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      .navbar-links {
+        list-style: none;
+        display: flex;
+      }
+
+      .navbar-links li {
+        margin-left: 2rem;
+      }
+
+      .navbar-links li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+      }
+
+      .navbar-links li a:hover {
+        color: #3498db;
+      }
+
+      /* Footer Styles */
+      footer {
+        background-color: #34495e;
+        color: white;
+        text-align: center;
+        padding: 2rem 0;
+      }
+
+      .footer-content p {
+        margin: 0.5rem 0;
+      }
+
+      /* Mobile Responsiveness */
+      @media (max-width: 768px) {
+        .navbar-container {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .navbar-links {
+          flex-direction: column;
+          align-items: flex-start;
+          margin-top: 1rem;
+        }
+
+        .navbar-links li {
+          margin: 0.5rem 0;
+        }
+
+        footer {
+          padding: 1rem 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navigation Bar -->
+    <header>
+      <nav class="navbar">
+        <div class="navbar-container">
+          <a href="/" class="navbar-logo">Fake Review Detector</a>
+          <ul class="navbar-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/form">Submit Review</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
     <div class="result-container">
-        <h1>Review Classification Result</h1>
-        <p>Your review has been classified as:</p>
-        <h2>{{ prediction }}</h2>
-        <a href="/form" class="button">Try Another Review</a>
-        <a href="/" class="button">Go to home</a>
+      <h1>Review Classification Result</h1>
+      <p>Your review has been classified as:</p>
+      <h2>{{ prediction }}</h2>
+      <!-- The prediction result will be rendered here -->
+      <a href="/form" class="button">Try Another Review</a>
+      <a href="/" class="button">Go to Home</a>
     </div>
-</body>
 
+    <!-- Footer -->
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2024 Fake Review Detector. All rights reserved.</p>
+        <p>Developed by Pratham Khanna</p>
+        <p>For more information about the project, visit the <a href="https://github.com/the-developer-306/Fake-Review-Detector" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Repository</a>.</p>
+      </div>
+    </footer>
+  </body>
 </html>
