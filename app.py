@@ -5,9 +5,9 @@ import re
 import nltk
 import spacy
 import pickle
-from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer as SIA
 import joblib
 import os
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer as SIA
 
 # Ensure that NLTK uses the local nltk_data folder
 nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
@@ -19,9 +19,6 @@ with open('scaling_pipeline.pkl', 'rb') as f:
 with open('vectorization_pipeline.pkl', 'rb') as f:
     vectorization_pipeline = pickle.load(f)
 
-# with open('Review_classifier_LG.pkl', 'rb') as f:
-#     review_classifier_model = pickle.load(f)
-
 review_classifier_model = joblib.load('Review_classifier_LG.pkl')
 
 # Initialize components
@@ -29,7 +26,7 @@ app = Flask(__name__)
 analyzer = SIA()
 nlp = spacy.load('en_core_web_sm')
 
-# Download NLTK resources if they are not present (though we have them locally, it helps if they are missing)
+# Download NLTK resources if they are not present
 try:
     nltk.data.find('tokenizers/punkt_tab')
 except LookupError:
@@ -41,6 +38,8 @@ except LookupError:
     nltk.download('stopwords')
 
 stop_words = set(nltk.corpus.stopwords.words('english'))
+
+# nltk.download('punkt')
 
 # Define contractions dictionary
 contractions = {
@@ -80,8 +79,8 @@ def preprocess_and_lemmatize(text):
     tokens = [token.lemma_ for token in doc if not token.is_stop and not token.is_punct]
     return ' '.join(tokens)
 
-@app.route('/', methods=['GET', 'POST'])
-def predict_():
+@app.route('/predict', methods=['GET', 'POST'])
+def prediction_function():
     prediction = None
     if request.method == 'POST':
         review_text = request.form['review_text']
@@ -124,7 +123,15 @@ def predict_():
         prediction_value = review_classifier_model.predict(final_df)[0]
         prediction = "FAKE" if prediction_value == 1 else "GENUINE"
 
-    return render_template('index.html', prediction=prediction)
+    return render_template('result.html', prediction=prediction)
+
+@app.route('/form')
+def form():
+    return render_template('form.html')
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

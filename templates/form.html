@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Form</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="form-container">
+        <h1>Submit Your Review</h1>
+        <form action="/predict" method="POST">
+            <label for="review_text">Review Text:</label>
+            <textarea name="review_text" id="review_text" rows="6" required></textarea>
+
+            <label for="overall">Overall Rating:</label>
+            <input type="number" name="overall" id="overall" min="1" max="5" required>
+
+            <label for="helpful_ratio">Helpful Votes Ratio:</label>
+            <input type="number" name="helpful_ratio" id="helpful_ratio" step="0.01" required>
+
+            <button type="submit">Submit Review</button>
+        </form>
+    </div>
+</body>
+
+</html>

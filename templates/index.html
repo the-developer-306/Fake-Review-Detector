@@ -1,80 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fake Review Detector</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f4;
-        }
-
-        .form-container {
-            max-width: 400px;
-            width: 100%;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .form-container h2 {
-            margin-bottom: 20px;
-        }
-
-        .form-container input,
-        .form-container textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-
-        .form-container input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .form-container input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-
-        .result {
-            font-size: 1.2em;
-            color: #4CAF50;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="form-container">
-        <h2>Review Classification</h2>
-        <form action="/" method="post">
-            <label for="review_text">Review Text:</label>
-            <textarea name="review_text" rows="4" required></textarea>
+    <div class="landing-container">
+        <h1>Welcome to Fake Review Detector</h1>
+        <p>
+            The Fake Review Detector uses advanced machine learning models to determine if a review is genuine or fake.
+            It analyzes review content, rating, and helpful votes to make an accurate prediction.
+        </p>
 
-            <label for="overall">Overall Rating:</label>
-            <input type="number" name="overall" min="1" max="5" required>
+        <h2>How It Works</h2>
+        <p>
+            The system processes the review text and related data to identify if it's a genuine review or a fabricated
+            one.
+            It considers the sentiment, review length, and other features to classify the review accurately.
+        </p>
 
-            <label for="helpful_ratio">Helpful Ratio:</label>
-            <input type="number" step="0.01" name="helpful_ratio" required>
+        <h2>What Inputs Are Needed?</h2>
+        <ul>
+            <li><strong>Review Text:</strong> The content of the review.</li>
+            <li><strong>Overall Rating:</strong> The star rating given by the reviewer (1-5).</li>
+            <li><strong>Helpful Votes Ratio:</strong> The ratio of helpful votes received for the review.</li>
+        </ul>
 
-            <input type="submit" value="Classify Review">
-        </form>
-        {% if prediction %}
-        <div class="result">{{ prediction }}</div>
-        {% endif %}
+        <a href="/form" class="button">Try Now</a>
     </div>
 </body>
 
