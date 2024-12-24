@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting to Fake Review Detector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      animation: backgroundAnimation 10s infinite alternate;
+    }
+    @keyframes backgroundAnimation {
+      0% { background: linear-gradient(to right, #6a11cb, #2575fc); }
+      50% { background: linear-gradient(to right, #2575fc, #6a11cb); }
+      100% { background: linear-gradient(to right, #6a11cb, #2575fc); }
+    }
+    #content {
+      max-width: 600px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+      animation: contentAnimation 1s ease-out;
+    }
+    @keyframes contentAnimation {
+      0% { transform: scale(0); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    h1 {
+      margin: 0 0 20px;
+      animation: fadeIn 2s;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    p {
+      font-size: 1.2em;
+      margin: 0 0 20px;
+      animation: fadeIn 2s 0.5s forwards;
+    }
+    #countdown {
+      font-size: 3em;
+      font-weight: bold;
+      animation: countdownAnimation 1s infinite;
+    }
+    @keyframes countdownAnimation {
+      0% { color: #fff; }
+      50% { color: #f39c12; }
+      100% { color: #fff; }
+    }
+  </style>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Send a request to the server to start it
+      fetch('https://fake-review-detector-jhns.onrender.com')
+        .then(response => response.ok)
+        .catch(error => console.error('Error:', error));
+
+      // Countdown timer
+      let countdown = 50;
+      const countdownElement = document.getElementById("countdown");
+
+      const interval = setInterval(() => {
+        countdown--;
+        countdownElement.textContent = countdown;
+
+        if (countdown <= 0) {
+          clearInterval(interval);
+          window.location.href = "https://fake-review-detector-jhns.onrender.com";
+        }
+      }, 1000);
+    });
+  </script>
+</head>
+<body>
+  <div id="content">
+    <h1>Redirecting to Fake Review Detector</h1>
+    <p>Our project uses free hosting services. Please be patient while the server starts. This is a limitation of the hosting service, and we appreciate your understanding.</p>
+    <p>You will be redirected in <span id="countdown">50</span> seconds.</p>
+  </div>
+</body>
+</html>
